@@ -44,10 +44,9 @@ C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\Presentation.genruntimeconfig.cache
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\ref\Presentation.dll
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\UserControls\CalendarView.g.cs
-C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\UserControls\HistoryView.g.cs
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\UserControls\HomeView.g.cs
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\UserControls\InvitedProjectsView.g.cs
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\UserControls\CalendarView.baml
-C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\UserControls\HistoryView.baml
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\UserControls\HomeView.baml
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\UserControls\InvitedProjectsView.baml
+C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\Presentation.sourcelink.json

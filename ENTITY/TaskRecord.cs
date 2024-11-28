@@ -29,18 +29,12 @@ namespace ENTITY
 
         public SqlCommand SQLCommandInsert(SqlConnection connection)
         {
-            string ssql = "INSERT INTO [Cambios] ([Fecha_Modificacion],[Descripcion],[Id_Tarea])" +
-                   "VALUES (@Fecha_Modificacion, @Descripcion, @Id_Tarea)";
+            string ssql = "INSERT INTO Cambios VALUES (@Fecha_Modificacion, @Descripcion, @Id_Tarea)";
             SqlCommand cmd = new SqlCommand(ssql, connection);
             cmd.Parameters.AddWithValue("@Fecha_Modificacion", ModificationDate);
             cmd.Parameters.AddWithValue("@Descripcion", Description);
             cmd.Parameters.AddWithValue("@Id_Tarea", IdTask);
             return cmd;
-        }
-
-        public string SQLCommandSelect()
-        {
-            return "select * from Cambios";
         }
     }
 }

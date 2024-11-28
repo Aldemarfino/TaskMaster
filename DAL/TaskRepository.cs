@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using ENTITY;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DAL
 {
@@ -17,6 +18,7 @@ namespace DAL
             userRepository = new UserRepository();
             projectRepository = new ProjectRepository();
         }
+
         protected override Task Mapper(SqlDataReader reader)
         {
             int idTask = reader.GetInt32(0);
@@ -27,10 +29,12 @@ namespace DAL
             DateTime deadline = reader.GetDateTime(5);
             string state = reader.GetString(6);
             string priority = reader.GetString(7);
-            Project project = projectRepository.GetById(reader.GetInt32(8));
-            User user = userRepository.GetByUsername(reader.GetString(9));
+            int percentage = reader.GetInt32(8);
 
-            return new Task(idTask, title, description, creationDate, startdate, deadline, state, priority, project, user);
+            Project project = projectRepository.GetById(reader.GetInt32(9));
+            User user = userRepository.GetByUsername(reader.GetString(10));
+
+            return new Task(idTask, title, description, creationDate, startdate, deadline, state, priority, percentage, project, user);
         }
 
         private DateTime? DateOrNull(SqlDataReader reader)
@@ -48,8 +52,10 @@ namespace DAL
         public Task GetById(int id)
         {
             string ssql = "Select * From Tareas Where Id_Tarea = @Id_Tarea";
+
             SqlCommand cmd = new SqlCommand(ssql, _connection);
             cmd.Parameters.AddWithValue("@Id_Tarea", id);
+
             _connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
@@ -64,6 +70,26 @@ namespace DAL
             }
             _connection.Close();
             return task;
+        }
+
+        public List<Task> GetTasksByProject(int projectId)
+        {
+            List<Task> tasks = new List<Task>();
+
+            string ssql = "SELECT * FROM Tareas WHERE [Id_Proyecto] = @Id_Proyecto " +
+                "ORDER BY Fecha_Limite ASC;";
+
+            SqlCommand cmd = new SqlCommand(ssql, _connection);
+            cmd.Parameters.AddWithValue("@Id_Proyecto", projectId);
+
+            _connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                tasks.Add(Mapper(reader));
+            }
+            _connection.Close();
+            return tasks;
         }
     }
 }

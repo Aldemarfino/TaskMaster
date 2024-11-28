@@ -11,6 +11,8 @@
     <SolidColorBrush x:Key="Background3" Color="#1f587c"/>
     <SolidColorBrush x:Key="Background4" Color="#1e3c4c"/>
     <SolidColorBrush x:Key="Background5" Color="#124463"/>
+    <SolidColorBrush x:Key="Background6" Color="#513a80"/>
+    <SolidColorBrush x:Key="Background7" Color="#7057a4"/>
 
     <SolidColorBrush x:Key="Foreground1" Color="#a6d5da"/>
     <SolidColorBrush x:Key="Foreground2" Color="#faffad"/>

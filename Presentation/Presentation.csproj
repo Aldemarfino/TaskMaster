@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\IconUser.png" />
+    <None Remove="Images\Login_Background.jpeg" />
+    <None Remove="Images\TaskMaster.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FontAwesome.Sharp" Version="6.6.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
@@ -16,6 +22,16 @@
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj" />
     <ProjectReference Include="..\ENTITY\ENTITY.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\IconUser.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Login_Background.jpeg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\TaskMaster.png" />
   </ItemGroup>
 
 </Project>

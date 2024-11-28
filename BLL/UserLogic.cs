@@ -17,15 +17,11 @@ namespace BLL
             userRepository = new UserRepository();
         }
 
-        public bool Add(User entity)
+        public string Add(User entity)
         {
             return userRepository.Save(entity);
         }
 
-        public List<User> GetRows()
-        {
-            return userRepository.Read();
-        }
         public User ObtainByUsername(string username)
         {
             return userRepository.GetByUsername(username);

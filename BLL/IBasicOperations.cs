@@ -8,8 +8,7 @@ namespace BLL
 {
     public interface IBasicOperations<T>
     {
-        bool Add(T entity);
-        List<T> GetRows();
+        string Add(T entity);
 
     }
 }

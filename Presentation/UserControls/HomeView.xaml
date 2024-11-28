@@ -4,9 +4,168 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Presentation.UserControls"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Red">
-            
-    </Grid>
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
+    <Border Background="{StaticResource Background4}" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ToggleButton x:Name="tgbNewProject" Style="{StaticResource HomeNewProjectButton}" 
+                         HorizontalAlignment="Left" Margin="10,0,0,0"
+                         Checked="tgbNewProject_Checked" Unchecked="tgbNewProject_Unchecked">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Border Background="White" CornerRadius="50" BorderThickness="1">
+                        <fa:IconImage Icon="Add" Width="20" Height="20"
+                                      Margin="2"/>
+                    </Border>
+                    
+                    <TextBlock Text="Agregar Proyecto" Foreground="{StaticResource Foreground2}"
+                               Margin="5,0,0,0" VerticalAlignment="Center" FontSize="16"/>
+                </StackPanel>
+            </ToggleButton>
+
+            <Popup Name="PopupNewProject" PlacementTarget="{Binding ElementName=tgbNewProject}" Placement="Bottom"
+                   StaysOpen="False" Closed="PopupNewProject_Closed">
+
+                <Border Background="{StaticResource Background5}" CornerRadius="0,0,6,6"
+                        Width="350" Height="300">
+
+                    <StackPanel>
+                        <local:ClearableTextBox x:Name="txtProjectName" textBlockContent="Nombre del proyecto" Margin="10"/>
+                        <TextBox x:Name="DescriptionTextBox" AcceptsReturn="True" 
+                                 VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                                 TextWrapping="Wrap" Margin="10,0,10,5" Height="65" Width="330"/>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                    Margin="10">
+                            <DatePicker Margin="0,0,5,0" Name="dtpStartDate"
+                                        SelectedDate="{x:Static sys:DateTime.Now}" 
+                                        DisplayDateStart="{x:Static sys:DateTime.Now}">
+                                <DatePicker.Resources>
+                                    <Style TargetType="DatePickerTextBox">
+                                        <Setter Property="IsReadOnly" Value="True"/>
+                                    </Style>
+                                </DatePicker.Resources>
+                            </DatePicker>
+                            <DatePicker Name="dtpDeadline" Text="Fecha de entrega"
+                                        DisplayDateStart="{Binding ElementName=dtpStartDate, Path=SelectedDate}">
+                                <DatePicker.Resources>
+                                    <Style TargetType="DatePickerTextBox">
+                                        <Setter Property="IsReadOnly" Value="True"/>
+                                    </Style>
+                                </DatePicker.Resources>
+                            </DatePicker>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Margin="10">
+                            <Button Style="{StaticResource HomeViewButton}"
+                                    HorizontalAlignment="Left" Name="btnAttachFile"
+                                    Click="btnAttachFile_Click">
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Background="White" CornerRadius="8" BorderThickness="1" Width="25">
+                                        <fa:IconImage Icon="FileImport" Width="20" Height="20"
+                                                      Margin="2"/>
+                                    </Border>
+
+                                    <TextBlock Text="Adjuntar Archivo" Foreground="Black"
+                                               Margin="5,0,0,0" VerticalAlignment="Center" FontSize="16"/>
+                                </StackPanel>
+                            </Button>
+
+                            <TextBox x:Name="txtFilePath" HorizontalScrollBarVisibility="Auto" Height="Auto"
+                                     Margin="0,5,0,0" IsReadOnly="True"/>
+                        </StackPanel>
+                        <Button Style="{StaticResource HomeViewButton}"
+                                Margin="10" HorizontalAlignment="Left" Height="25"
+                                Name="btnAddProject" Click="btnAddProject_Click">
+                            <TextBlock Text="Crear Proyecto" FontSize="16"/>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+
+                <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" 
+                          ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                          RowStyle="{DynamicResource DataGridRowStyle1}" 
+                          x:Name="ProjectsDataGrid" AutoGenerateColumns="False"
+                          SelectionMode="Single" Margin="10"
+                          CanUserAddRows="False"
+                          SelectionChanged="ProjectsDataGrid_SelectionChanged">
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Proyectos" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Height="40">
+
+                                        <CheckBox VerticalAlignment="Center"/>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Name}" FontSize="16"/>
+                                            <ProgressBar Maximum="100" Minimum="0" Value="{Binding Percentage}"
+                                                         Height="5" Background="Red" Margin="0,5,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Column="1">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+
+                        <local:ClearableTextBox Margin="10"/>
+
+                        <Button Grid.Column="1" Name="btnFilterProjects" Style="{StaticResource HomeFilterButton}"
+                                HorizontalAlignment="Left">
+                            <fa:IconImage Width="25" Height="25" Icon="Filter"/>
+                        </Button>
+                    </Grid>
+                    <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" 
+                              ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                              RowStyle="{DynamicResource DataGridRowStyle1}" 
+                              x:Name="FilteredProjectsDataGrid" AutoGenerateColumns="False"
+                              SelectionMode="Single" Margin="10"
+                              CanUserAddRows="False"
+                              SelectionChanged="FilteredProjectsDataGrid_SelectionChanged">
+
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Proyectos Filtrados" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Height="40">
+
+                                            <CheckBox VerticalAlignment="Center"/>
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Name}" FontSize="16"/>
+                                                <ProgressBar Maximum="100" Minimum="0" Value="{Binding Percentage}"
+                                                             Height="5" Background="Red" Margin="0,5,0,0"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
 </UserControl>

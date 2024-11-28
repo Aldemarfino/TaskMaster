@@ -19,11 +19,16 @@
             <Border CornerRadius="10,0,0,10" Background="{StaticResource Background1}">
                 <StackPanel>
                     <StackPanel Height="50" Margin="15,25,0,40" Orientation="Horizontal">
-                        
-                        <Image Source="C:\Users\Usuario\source\repos\Task_Master\Presentation\Images\TaskMaster.png"/>
+
+                        <Border Width="50">
+                            <Border.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/Presentation;component/Images/TaskMaster.png"/>
+                            </Border.Background>
+                        </Border>
                         <TextBlock Text="TaskMaster" FontSize="30"
                                    FontWeight="Bold" FontFamily="Montserrat"
-                                   VerticalAlignment="Center" Margin="20,0,0,0"/>
+                                   VerticalAlignment="Center" Margin="20,0,0,0"
+                                   Foreground="{StaticResource Foreground3}"/>
                     </StackPanel>
 
                     <RadioButton x:Name="rdbHome" Style="{StaticResource MainMenuButton}"
@@ -40,21 +45,10 @@
                     <RadioButton x:Name="rdbCalendar" Style="{StaticResource MainMenuButton}"
                                  Tag="{StaticResource Foreground3}"
                                  Checked="RadioButton_Checked">
-                        
+
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="230">
                             <fa:IconImage Icon="Calendar" Style="{StaticResource IconMenuButton}"/>
                             <TextBlock Text="Calendario" Style="{StaticResource TextMenuButton}"/>
-
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton x:Name="rdbHistory" Style="{StaticResource MainMenuButton}"
-                                 Tag="{StaticResource Foreground3}"
-                                 Checked="RadioButton_Checked">
-                        
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="230">
-                            <fa:IconImage Icon="History" Style="{StaticResource IconMenuButton}"/>
-                            <TextBlock Text="Registro de Proyectos" Style="{StaticResource TextMenuButton}"/>
 
                         </StackPanel>
                     </RadioButton>
@@ -69,8 +63,9 @@
 
                         </StackPanel>
                     </RadioButton>
+                    <Rectangle Height="365"/>
                     <RadioButton x:Name="rdbLogOut" Style="{StaticResource MainMenuButton}"
-                                 Tag="{StaticResource Foreground3}" Margin="0,200,0,0"
+                                 Tag="{StaticResource Foreground3}" 
                                  Checked="RadioButton_Checked">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="230">
                             <fa:IconImage Icon="RightFromBracket" Style="{StaticResource IconMenuButton}"/>
@@ -136,7 +131,7 @@
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
                             
-                            <TextBlock Text="Por el momento" FontSize="20"
+                            <TextBlock Text="{Binding CurrentUser1}" FontSize="20"
                                        FontWeight="Bold" Foreground="White"/>
                             
                             <fa:IconImage Icon="UserAlt" Margin="10,0" Height="30"/>

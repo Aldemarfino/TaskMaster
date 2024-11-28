@@ -16,11 +16,13 @@ namespace DAL
         {
             int idUser = reader.GetInt32(0);
             string userName = reader.GetString(1);
-            string name = reader.GetString(2);
-            string lastName = reader.GetString(3);
-            string email = reader.GetString(4);
-            string password = reader.GetString(5);
-            return new User(idUser, userName, name, lastName, email, password);
+            string password = reader.GetString(2);
+            string name = reader.GetString(3);
+            string lastName = reader.GetString(4);
+            string email = reader.GetString(5);
+            
+
+            return new User(idUser, userName, password, name, lastName, email);
         }
 
         public User GetByUsername(string username)

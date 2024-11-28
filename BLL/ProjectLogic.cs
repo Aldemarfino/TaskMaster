@@ -16,13 +16,9 @@ namespace BLL
         {
             projectRepository = new ProjectRepository();
         }
-        public bool Add(Project entity)
+        public string Add(Project entity)
         {
             return projectRepository.Save(entity);
-        }
-        public List<Project> GetRows()
-        {
-            return projectRepository.Read();
         }
         public Project ObtainById(int id)
         {
@@ -30,7 +26,7 @@ namespace BLL
         }
         public List<Project> ProjectsByUser(string username)
         {
-
+            return projectRepository.GetProjectsByUser(username);
         }
     }
 }

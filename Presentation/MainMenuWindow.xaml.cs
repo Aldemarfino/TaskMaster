@@ -16,6 +16,7 @@ using System.Windows.Interop;
 using Presentation.UserControls;
 using FontAwesome.Sharp;
 using System.ComponentModel;
+using ENTITY;
 
 namespace Presentation
 {
@@ -24,14 +25,20 @@ namespace Presentation
     /// </summary>
     public partial class MainMenuWindow : Window, INotifyPropertyChanged
     {
-        public MainMenuWindow()
+        private User User;
+        public MainMenuWindow(User user)
         {
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            this.User = user;
+            rdbHome.IsChecked = true;
+
+            CurrentUser1 = user.UserName;
         }
 
         private string Title;
         private IconChar Icon;
+        private string CurrentUser;
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -51,6 +58,15 @@ namespace Presentation
             {
                 Icon = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Icon1"));
+            } 
+        }
+        public string CurrentUser1 
+        { 
+            get { return CurrentUser; } 
+            set 
+            {
+                CurrentUser = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentUser1"));
             } 
         }
 
@@ -94,7 +110,7 @@ namespace Presentation
             switch (radioButton.Name)
             {
                 case "rdbHome":
-                    LoadUserControl(new HomeView());
+                    LoadUserControl(new HomeView(User));
                     Title1 = "Mis Proyectos";
                     Icon1 = IconChar.Home;
                     break;
@@ -103,12 +119,6 @@ namespace Presentation
                     LoadUserControl(new CalendarView());
                     Title1 = "Calendario";
                     Icon1 = IconChar.Calendar;
-                    break;
-
-                case "rdbHistory":
-                    LoadUserControl(new HistoryView());
-                    Title1 = "Historial";
-                    Icon1 = IconChar.History;
                     break;
 
                 case "rdbInvProjects":

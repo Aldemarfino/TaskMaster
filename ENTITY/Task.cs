@@ -18,11 +18,12 @@ namespace ENTITY
         public DateTime Deadline { get; set; }
         public string State { get; set; }
         public string Priority { get; set; }
+        public int Percentage { get; set; }
         public Project Project { get; set; }
         public User User { get; set; }
 
         public Task(int idTask, string title, string description, DateTime creationDate, DateTime? startDate, DateTime deadline, 
-                    string state, string priority, Project project, User user)
+                    string state, string priority, int percentage, Project project, User user)
         {
             IdTask = idTask;
             Title = title;
@@ -32,6 +33,7 @@ namespace ENTITY
             Deadline = deadline;
             State = state;
             Priority = priority;
+            Percentage = percentage;
             Project = project;
             User = user;
         }
@@ -40,9 +42,9 @@ namespace ENTITY
 
         public SqlCommand SQLCommandInsert(SqlConnection connection)
         {
-            string ssql = "INSERT INTO Tareas(Titulo, Descripcion, " +
-                "Fecha_Creacion, Fecha_Inicio, Fecha_Limite, Estado, Prioridad, Id_Proyecto, Nombre_Usuario)" +
-                "VALUES (@Titulo, @Descripcion, @Fecha_Creacion, @Fecha_Inicio, @Fecha_Limite, @Estado, @Prioridad, @Id_Proyecto, @Nombre_Usuario)";
+            string ssql = "INSERT INTO Tareas " +
+                "VALUES (@Titulo, @Descripcion, @Fecha_Creacion, @Fecha_Inicio, " +
+                "@Fecha_Limite, @Estado, @Prioridad, @Porcentaje, @Id_Proyecto, @Nombre_Usuario)";
             SqlCommand cmd = connection.CreateCommand();
             cmd.Parameters.AddWithValue("@Titulo", Title);
             cmd.Parameters.AddWithValue("@Descripcion", Description ?? (object)DBNull.Value);
@@ -51,15 +53,11 @@ namespace ENTITY
             cmd.Parameters.AddWithValue("@Fecha_Limite", Deadline);
             cmd.Parameters.AddWithValue("@Estado", State);
             cmd.Parameters.AddWithValue("@Prioridad", Priority);
+            cmd.Parameters.AddWithValue("@Porcentaje", Percentage);
             cmd.Parameters.AddWithValue("@Id_Proyecto", Project.IdProject);
             cmd.Parameters.AddWithValue("@Nombre_Usuario", User.UserName);
 
             return cmd;
-        }
-
-        public string SQLCommandSelect()
-        {
-            return "select * from Tareas";
         }
     }
 }

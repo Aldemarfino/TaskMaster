@@ -15,14 +15,14 @@ namespace BLL
             taskRepository = new TaskRepository();
         }
 
-        public bool Add(Task entity)
+        public string Add(Task entity)
         {
             return taskRepository.Save(entity);
         }
 
-        public List<Task> GetRows()
+        public List<Task> TasksByProject(int projectId)
         {
-            return taskRepository.Read();
+            return taskRepository.GetTasksByProject(projectId);
         }
     }
 }

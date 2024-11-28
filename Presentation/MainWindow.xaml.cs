@@ -37,7 +37,7 @@ namespace Presentation
                 if (user.Password == txtPassword.Password)
                 {
                     MessageBox.Show("Inicio de sesión exitoso");
-                    MainMenuWindow mainMenuWindow = new MainMenuWindow();
+                    MainMenuWindow mainMenuWindow = new MainMenuWindow(user);
                     mainMenuWindow.Show();
                     this.Close();
                 }

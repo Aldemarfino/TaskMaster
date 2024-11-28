@@ -10,7 +10,6 @@ namespace ENTITY
     public interface IEntityOptions
     {
         SqlCommand SQLCommandInsert(SqlConnection connection);
-        string SQLCommandSelect();
 
     }
 }

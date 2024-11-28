@@ -13,7 +13,7 @@
     <Border CornerRadius="12">
 
         <Border.Background>
-            <ImageBrush ImageSource="C:\Users\Usuario\source\repos\Task_Master\Presentation\Images\Login_Background.jpeg"
+            <ImageBrush ImageSource="pack://application:,,,/Presentation;component/Images/Login_Background.jpeg"
                         Stretch="Fill"/>
         </Border.Background>
         
@@ -42,12 +42,15 @@
                         </Button>
                     </Grid>
                 </Border>
-                
+
                 <StackPanel Grid.Row="1" Width="270" Margin="0,30,0,30" Orientation="Vertical" Background="LightGray">
 
-                    <Image Source="C:\Users\Usuario\source\repos\Task_Master\Presentation\Images\IconUser.png" 
-                           Stretch="Uniform" Height="150" Margin="0,10,0,0"/>
-
+                    <Border Height="150" Width="150" Margin="20">
+                        <Border.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/Presentation;component/Images/IconUser.png"/>
+                        </Border.Background>
+                    </Border>
+                    
                     <TextBlock Style="{StaticResource MenuTextBlock}" Text="Usuario" Margin="20,10,20,0"/>
                     
                     <TextBox Name="txtUser" 

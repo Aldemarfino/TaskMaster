@@ -19,7 +19,7 @@ namespace DAL
             _connection = new SqlConnection(cadenaConexion);
         }
 
-        public bool Save(T entity)
+        public string Save(T entity)
         {
             try
             {
@@ -27,33 +27,20 @@ namespace DAL
                 _connection.Open();
                 int affectedRows = cmd.ExecuteNonQuery();
                 _connection.Close();
-                if (affectedRows > 0) return true;
-                return false;
+                if (affectedRows > 0) return "Guardado exitosamente";
+                return "Ocurrió un problema";
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
                 _connection.Close();
-                System.Diagnostics.Debug.WriteLine(e.Message);
-                return false;
+                return "Ocurrió un problema al tratar de guardar la entidad";
+            }
+            catch (Exception e )
+            {
+                _connection.Close();
+                return $"{e.Message}";
             }
             
-        }
-
-        public List<T> Read()
-        {
-
-            List<T> list = new List<T>();
-            T entidad = new T();
-            string ssql = entidad.SQLCommandSelect();
-            SqlCommand cmd = new SqlCommand(ssql, _connection);
-            _connection.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                list.Add(Mapper(reader));
-            }
-            _connection.Close();
-            return list;
         }
 
         protected abstract T Mapper(SqlDataReader reader);

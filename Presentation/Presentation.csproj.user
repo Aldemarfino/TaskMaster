@@ -19,9 +19,6 @@
     <Compile Update="UserControls\ClearableTextBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\HistoryView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="UserControls\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,9 +46,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\ClearableTextBox.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UserControls\HistoryView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\HomeView.xaml">

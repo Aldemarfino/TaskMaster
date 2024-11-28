@@ -26,10 +26,11 @@ namespace DAL
             DateTime startDate = reader.GetDateTime(3);
             DateTime deadline = reader.GetDateTime(4);
             string state = reader.GetString(5);
-            byte[] fileContent = reader.IsDBNull(6) ? null : reader["Archivo"] as byte[];
+            int percentage = reader.GetInt32(6);
+            byte[] fileContent = reader.IsDBNull(7) ? null : reader["Archivo"] as byte[];
 
-            User user = userRepository.GetByUsername(reader.GetString(7));
-            return new Project(idProject, name, description, startDate, deadline, state, fileContent, user);
+            User user = userRepository.GetByUsername(reader.GetString(8));
+            return new Project(idProject, name, description, startDate, deadline, state, percentage, fileContent, user);
         }
 
         public Project GetById(int id)
@@ -56,9 +57,13 @@ namespace DAL
         public List<Project> GetProjectsByUser(string username)
         {
             List<Project> projects = new List<Project>();
-            string ssql = "SELECT * FROM [dbo].[Proyectos] WHERE [Usuario_Creador] = @UsuarioCreador";
+
+            string ssql = "SELECT * FROM [dbo].[Proyectos] WHERE [Usuario_Creador] = @UsuarioCreador " +
+                "ORDER BY Fecha_Limite ASC;";
+
             SqlCommand cmd = new SqlCommand(ssql, _connection);
             cmd.Parameters.AddWithValue("@UsuarioCreador", username);
+
             _connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())

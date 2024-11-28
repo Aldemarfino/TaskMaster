@@ -31,7 +31,7 @@ namespace Presentation
         private void btnRegistrar_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtName.txtData.Text) || string.IsNullOrEmpty(txtLastname.txtData.Text) ||
-                string.IsNullOrEmpty(txtEmail.txtData.Text) || string.IsNullOrEmpty(txtUsername.txtData.Text)  ||
+                string.IsNullOrEmpty(txtEmail.txtData.Text) || string.IsNullOrEmpty(txtUsername.txtData.Text) ||
                 string.IsNullOrEmpty(txtPassword.Password))
             {
                 MessageBox.Show("Hay campos vacios");
@@ -43,17 +43,9 @@ namespace Presentation
                 string email = txtEmail.txtData.Text;
                 string username = txtUsername.txtData.Text;
                 string password = txtPassword.Password;
-                User user = new User(null,username,name,lastName,email,password);
-                if (userLogic.Add(user))
-                {
-                    MessageBox.Show("Usuario Creado");
-                }
-                else
-                {
-                    MessageBox.Show("Usuario inválido");
-                }
-                
+                User user = new User(null, username, password, name, lastName, email);
 
+                MessageBox.Show(userLogic.Add(user),"Registro de Sesion",MessageBoxButton.OK,MessageBoxImage.Information);
             }
         }
 

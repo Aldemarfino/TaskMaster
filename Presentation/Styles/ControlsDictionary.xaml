@@ -11,7 +11,7 @@
         <Setter Property="FontFamily" Value="Times New Roman"/>
     </Style>
 
-    <!--Botones de los primeros menus-->
+    <!--Botón de menu-->
     <Style x:Key="MenuButton" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource BackgroundMenuButton}"/>
         <Setter Property="FontSize" Value="20"/>
@@ -164,4 +164,75 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     
+    <!--Boton de filtro en la vista Home-->
+    <Style x:Key="HomeFilterButton" TargetType="Button">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="6" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Wheat"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <!--Boton de agregar proyecto en vista Home-->
+    <Style x:Key="HomeNewProjectButton" TargetType="ToggleButton">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="170"/>
+        <Setter Property="Background" Value="{StaticResource Background1}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Background2}"/>
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="{StaticResource Background3}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Boton de la vista Home-->
+    <Style x:Key="HomeViewButton" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource Background6}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" Background="{TemplateBinding Background}"
+                            BorderThickness="2">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource Background7}"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
 </ResourceDictionary>
