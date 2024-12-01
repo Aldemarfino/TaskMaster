@@ -34,10 +34,10 @@ namespace Presentation.UserControls
 
             User = user;
             DataContext = this;
-            LoadGridData();
+            LoadProjectsGridData();
         }
 
-        private void LoadGridData()
+        private void LoadProjectsGridData()
         {
             Projects = new ObservableCollection<Project>(projectLogic.ProjectsByUser(User.UserName));
             ProjectsDataGrid.ItemsSource = Projects;
@@ -55,7 +55,7 @@ namespace Presentation.UserControls
         {
             if (ProjectsDataGrid.SelectedItem is Project selectedProject)
             {
-                MessageBox.Show($"Proyecto seleccionado: {selectedProject.Name}");
+                new ProjectSettings(selectedProject).ShowDialog();
             }
         }
 
@@ -103,7 +103,7 @@ namespace Presentation.UserControls
                 Project project = new Project
                 {
                     Name = txtProjectName.txtData.Text,
-                    Description = (string.IsNullOrWhiteSpace(DescriptionTextBox.Text)) ? null : DescriptionTextBox.Text,
+                    Description = DescriptionTextBox.Text,
                     StartDate = dtpStartDate.SelectedDate.GetValueOrDefault(DateTime.Now),
                     Deadline = dtpDeadline.SelectedDate.GetValueOrDefault(DateTime.Now),
                     State = (dtpStartDate.SelectedDate > DateTime.Now) ? "Programado" : "Pendiente",
@@ -112,7 +112,7 @@ namespace Presentation.UserControls
                 };
 
                 MessageBox.Show(projectLogic.Add(project));
-                LoadGridData();
+                LoadProjectsGridData();
             }
         }
 
@@ -121,6 +121,12 @@ namespace Presentation.UserControls
             if (string.IsNullOrWhiteSpace(txtProjectName.txtData.Text))
             {
                 MessageBox.Show("Digite un nombre para el proyecto.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(DescriptionTextBox.Text))
+            {
+                MessageBox.Show("Digite una dscripción para el proyecto.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
@@ -136,6 +142,11 @@ namespace Presentation.UserControls
         private void PopupNewProject_Closed(object sender, EventArgs e)
         {
             tgbNewProject.IsChecked = false;
+        }
+
+        private void btnFilterProjects_Click(object sender, RoutedEventArgs e)
+        {
+            FilteredProjectsDataGrid.DataContext = projects;
         }
     }
 }

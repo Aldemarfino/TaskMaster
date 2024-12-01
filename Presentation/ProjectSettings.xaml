@@ -1,0 +1,225 @@
+﻿<Window x:Class="Presentation.ProjectSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:uc="clr-namespace:Presentation.UserControls"
+        mc:Ignorable="d"
+        Title="ProjectSettings" Height="400" Width="700"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize" Background="{StaticResource TitleBarColor}"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Border Background="{StaticResource Background5}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Vista de dettales del proyecto-->
+            <Grid x:Name="projectDetailsGrid" Visibility="Hidden">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="{Binding Name}" 
+                           FontSize="24" FontWeight="Bold"
+                           HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+                <StackPanel Grid.Row="1" Margin="20" HorizontalAlignment="Left">
+                    <TextBlock FontSize="16" FontWeight="Bold" Text="Descripción:"/>
+                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,5,0,15"/>
+
+                    <TextBlock FontSize="16" FontWeight="Bold" Text="Fecha de inicio:"/>
+                    <TextBlock Text="{Binding StartDate, StringFormat='{}{0:dd/MM/yyyy}'}" Margin="0,5,0,15"/>
+
+                    <TextBlock FontSize="16" FontWeight="Bold" Text="Fecha límite:"/>
+                    <TextBlock Text="{Binding Deadline, StringFormat='{}{0:dd/MM/yyyy}'}" Margin="0,5,0,15"/>
+
+                    <TextBlock FontSize="16" FontWeight="Bold" Text="Estado:"/>
+                    <TextBlock Text="{Binding State}" Margin="0,5,0,15"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <Button Content="Editar" Width="100" Margin="10"/>
+                    <Button Content="Descargar Archivo" Width="150" Margin="10"/>
+                </StackPanel>
+            </Grid>
+
+            <!--Vista de tareas del proyecto-->
+            <Grid x:Name="taskGrid" Visibility="Hidden">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer>
+                    <DataGrid x:Name="TaskDataGrid" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Titulo" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Title}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Descripción" Width="270">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Description}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Prioridad">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox IsEditable="True" SelectedValue="{Binding Priority}"
+                                                  SelectedValuePath="Content">
+                                            <ComboBoxItem Content="1"/>
+                                            <ComboBoxItem Content="2"/>
+                                            <ComboBoxItem Content="3"/>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <Button Name="btnTaskOptions" Click="btnTaskOptions_Click">
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+
+                                                    <Setter Property="Background" Value="Wheat"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="Button">
+                                                                <Border Background="{TemplateBinding Background}" Height="30"
+                                                                        Width="30" CornerRadius="10">
+
+                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="DarkGoldenrod"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+
+                                            <fa:IconImage Icon="EllipsisVertical" Margin="10"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+                
+                <!--Opciones de la tarea-->
+                <Popup Name="TaskOptionsPopUp" StaysOpen="False" PlacementTarget="{Binding ElementName=btnTaskOptions}"
+                       Placement="Center" Width="400" Height="400">
+                    <Border Background="{StaticResource Background1}">
+                        <StackPanel Margin="30">
+                            <StackPanel Orientation="Horizontal">
+                                <uc:ClearableTextBox textBlockContent="Asignar tarea a Usuario"
+                                                     Width="300"/>
+                                <Button Style="{StaticResource HomeViewButton}" Margin="10,0,0,0">
+                                    <TextBlock Text="Asignar"/>
+                                </Button>
+                            </StackPanel>
+                            <Button Style="{StaticResource HomeViewButton}"
+                                    Width="300">
+                                <TextBlock Text="Eliminar tarea"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+
+                    <Button Style="{StaticResource HomeViewButton}"
+                            Margin="10,5,5,0" Height="30"
+                            Name="btnCreateTask" Click="btnCreateTask_Click">
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="170">
+                            
+                            <fa:IconImage Icon="ListAlt" Style="{StaticResource IconMenuButton}"/>
+                            <TextBlock Text="Agregar Tarea" Style="{StaticResource TextMenuButton}"
+                                       Width="100" Margin="-10,0,0,0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource HomeViewButton}"
+                            Margin="10,5,5,0" HorizontalAlignment="Left" Height="30"
+                            Name="btnIASuggestedTasks" Click="btnIASuggestedTasks_Click">
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="170">
+                            <fa:IconImage Icon="ChartArea" Style="{StaticResource IconMenuButton}"/>
+                            <TextBlock Text="Sugerencias" Style="{StaticResource TextMenuButton}"/>
+
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Grid.Column="1" FlowDirection="RightToLeft">
+
+                <RadioButton x:Name="rdbProjectInfo" Style="{StaticResource MainMenuButton}"
+                             Tag="{StaticResource Foreground3}"
+                             Checked="RadioButton_Checked">
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="230">
+                        <fa:IconImage Icon="list" Style="{StaticResource IconMenuButton}"/>
+                        <TextBlock Text="Proyecto" Style="{StaticResource TextMenuButton}"/>
+
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton x:Name="rdbProjectTask" Style="{StaticResource MainMenuButton}"
+                             Tag="{StaticResource Foreground3}"
+                             Checked="RadioButton_Checked">
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="230">
+                        <fa:IconImage Icon="TasksAlt" Style="{StaticResource IconMenuButton}"/>
+                        <TextBlock Text="Tareas" Style="{StaticResource TextMenuButton}"/>
+
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton x:Name="rdbInvitedUsers" Style="{StaticResource MainMenuButton}"
+                             Tag="{StaticResource Foreground3}"
+                             Checked="RadioButton_Checked">
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="230">
+                        <fa:IconImage Icon="Users" Style="{StaticResource IconMenuButton}"/>
+                        <TextBlock Text="Usuarios Invitados" Style="{StaticResource TextMenuButton}"/>
+
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

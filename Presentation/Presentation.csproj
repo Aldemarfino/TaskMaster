@@ -17,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="FontAwesome.Sharp" Version="6.6.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>

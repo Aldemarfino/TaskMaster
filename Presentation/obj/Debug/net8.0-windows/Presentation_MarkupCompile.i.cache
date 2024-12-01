@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Usuario\source\repos\Task_Master\Presentation\App.xaml
-91791686362
+10-967591882
 
-13823616544
-212-318975362
-MainMenuWindow.xaml;MainWindow.xaml;SignUpWindow.xaml;Styles\ColorsDictionary.xaml;Styles\ControlsDictionary.xaml;UserControls\CalendarView.xaml;UserControls\ClearableTextBox.xaml;UserControls\HomeView.xaml;UserControls\InvitedProjectsView.xaml;
+14895371191
+213-1302796486
+MainMenuWindow.xaml;MainWindow.xaml;ProjectSettings.xaml;SignUpWindow.xaml;Styles\ColorsDictionary.xaml;Styles\ControlsDictionary.xaml;UserControls\CalendarView.xaml;UserControls\ClearableTextBox.xaml;UserControls\HomeView.xaml;UserControls\InvitedProjectsView.xaml;
 
 True
 

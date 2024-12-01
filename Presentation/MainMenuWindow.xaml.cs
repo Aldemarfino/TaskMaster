@@ -25,7 +25,6 @@ namespace Presentation
     /// </summary>
     public partial class MainMenuWindow : Window, INotifyPropertyChanged
     {
-        private User User;
         public MainMenuWindow(User user)
         {
             InitializeComponent();
@@ -36,6 +35,7 @@ namespace Presentation
             CurrentUser1 = user.UserName;
         }
 
+        private User User;
         private string Title;
         private IconChar Icon;
         private string CurrentUser;

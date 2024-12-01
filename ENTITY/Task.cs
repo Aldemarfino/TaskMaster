@@ -48,12 +48,12 @@ namespace ENTITY
             SqlCommand cmd = connection.CreateCommand();
             cmd.Parameters.AddWithValue("@Titulo", Title);
             cmd.Parameters.AddWithValue("@Descripcion", Description ?? (object)DBNull.Value);
-            cmd.Parameters.AddWithValue("@Fecha_Creacion", CreationDate);
-            cmd.Parameters.AddWithValue("@Fecha_Inicio", StartDate ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("@Fecha_Creacion", DateTime.Now);
+            cmd.Parameters.AddWithValue("@Fecha_Inicio", (object)DBNull.Value);
             cmd.Parameters.AddWithValue("@Fecha_Limite", Deadline);
             cmd.Parameters.AddWithValue("@Estado", State);
             cmd.Parameters.AddWithValue("@Prioridad", Priority);
-            cmd.Parameters.AddWithValue("@Porcentaje", Percentage);
+            cmd.Parameters.AddWithValue("@Porcentaje", 0);
             cmd.Parameters.AddWithValue("@Id_Proyecto", Project.IdProject);
             cmd.Parameters.AddWithValue("@Nombre_Usuario", User.UserName);
 

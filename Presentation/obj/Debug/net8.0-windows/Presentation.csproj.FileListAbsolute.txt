@@ -50,3 +50,12 @@ C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\UserControls\HomeView.baml
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\UserControls\InvitedProjectsView.baml
 C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\Presentation.sourcelink.json
+C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\ProjectSettings.g.cs
+C:\Users\Usuario\source\repos\Task_Master\Presentation\obj\Debug\net8.0-windows\ProjectSettings.baml
+C:\Users\Usuario\source\repos\Task_Master\Presentation\bin\Debug\net8.0-windows\System.IO.Pipelines.dll
+C:\Users\Usuario\source\repos\Task_Master\Presentation\bin\Debug\net8.0-windows\System.Text.Encodings.Web.dll
+C:\Users\Usuario\source\repos\Task_Master\Presentation\bin\Debug\net8.0-windows\System.Text.Json.dll
+C:\Users\Usuario\source\repos\Task_Master\Presentation\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\Usuario\source\repos\Task_Master\Presentation\bin\Debug\net8.0-windows\BLL.dll.config
+C:\Users\Usuario\source\repos\Task_Master\Presentation\bin\Debug\net8.0-windows\ENTITY.dll.config
+C:\Users\Usuario\source\repos\Task_Master\Presentation\bin\Debug\net8.0-windows\DAL.dll.config
