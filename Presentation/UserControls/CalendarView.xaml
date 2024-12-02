@@ -6,7 +6,12 @@
              xmlns:local="clr-namespace:Presentation.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Green">
-            
-    </Grid>
+
+    <Border Background="{StaticResource Background4}">
+
+        <Viewbox Stretch="Uniform">
+            <Calendar Name="projectsCalendar" Loaded="projectsCalendar_Loaded"
+                      DisplayDateChanged="projectsCalendar_DisplayDateChanged"/>
+        </Viewbox> 
+    </Border>
 </UserControl>

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
+using System.Windows.Controls.Primitives;
+using System.Windows.Forms;
 using ENTITY;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
@@ -81,6 +85,29 @@ namespace DAL
 
             SqlCommand cmd = new SqlCommand(ssql, _connection);
             cmd.Parameters.AddWithValue("@Id_Proyecto", projectId);
+
+            _connection.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                tasks.Add(Mapper(reader));
+            }
+            _connection.Close();
+            return tasks;
+        }
+
+        public List<Task> GetInvitedTasks(string username) 
+        {
+            List<Task> tasks = new List<Task>();
+
+            string ssql = "SELECT * FROM Tareas " +
+                "INNER JOIN Proyectos " +
+                "ON " +
+                "Tareas.Id_Proyecto = Proyectos.Id_Proyecto" +
+                "WHERE Tareas.Nombre_Usuario = @NombreUsuario AND Tareas.Nombre_Usuario<> Proyecto.Usuario_Creador;";
+
+            SqlCommand cmd = new SqlCommand(ssql, _connection);
+            cmd.Parameters.AddWithValue("@NombreUsuario", username);
 
             _connection.Open();
             SqlDataReader reader = cmd.ExecuteReader();

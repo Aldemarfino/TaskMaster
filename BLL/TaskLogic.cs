@@ -26,6 +26,11 @@ namespace BLL
             return taskRepository.GetTasksByProject(projectId);
         }
 
+        public List<Task> InvitedTasks(string username)
+        {
+            return taskRepository.GetInvitedTasks(username);
+        }
+
         public async tasks.Task<List<Task>> IASuggestedTask(Project project)
         {
             List<Task> tasks = new List<Task>();

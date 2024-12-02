@@ -59,11 +59,6 @@ namespace Presentation.UserControls
             }
         }
 
-        private void FilteredProjectsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void tgbNewProject_Checked(object sender, RoutedEventArgs e)
         {
             PopupNewProject.IsOpen = true;
@@ -146,7 +141,7 @@ namespace Presentation.UserControls
 
         private void btnFilterProjects_Click(object sender, RoutedEventArgs e)
         {
-            FilteredProjectsDataGrid.DataContext = projects;
+            FilteredProjectsDataGrid.DataContext = Projects;
         }
     }
 }

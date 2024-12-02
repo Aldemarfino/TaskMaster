@@ -158,6 +158,7 @@
                         </StackPanel>
                     </Border>
                 </Popup>
+
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
 
                     <Button Style="{StaticResource HomeViewButton}"
@@ -183,6 +184,18 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
+            </Grid>
+
+            <!--Vista de los usuarios trabajando en el proyecto-->
+            <Grid x:Name="UsersGrid">
+                <ScrollViewer>
+                    <DataGrid CanUserAddRows="False">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Usuarios" Binding="{Binding Username}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
             </Grid>
 
             <StackPanel Grid.Column="1" FlowDirection="RightToLeft">

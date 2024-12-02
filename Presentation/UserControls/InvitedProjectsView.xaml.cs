@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ENTITY;
 
 namespace Presentation.UserControls
 {
@@ -20,9 +22,20 @@ namespace Presentation.UserControls
     /// </summary>
     public partial class InvitedProjectsView : UserControl
     {
-        public InvitedProjectsView()
+        TaskRepository taskRepository;
+        User User;
+        public InvitedProjectsView(User user)
         {
             InitializeComponent();
+
+            User = user;
+            taskRepository = new TaskRepository();
+            LoadInvitedTasksDataGrid();
+        }
+
+        public void LoadInvitedTasksDataGrid()
+        {
+            invitedTasksDataGrid.DataContext = taskRepository.GetInvitedTasks(User.UserName);
         }
     }
 }

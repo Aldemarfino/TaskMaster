@@ -122,7 +122,7 @@ namespace Presentation
                     break;
 
                 case "rdbInvProjects":
-                    LoadUserControl(new InvitedProjectsView());
+                    LoadUserControl(new InvitedProjectsView(User));
                     Title1 = "Proyectos Invitados";
                     Icon1 = IconChar.Users;
                     break;

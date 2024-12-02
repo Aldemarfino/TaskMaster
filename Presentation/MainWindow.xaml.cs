@@ -46,7 +46,6 @@ namespace Presentation
                     MessageBox.Show("Credenciales erroneas");
                 }
             }
-
         }
 
         private void btnRegistrar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

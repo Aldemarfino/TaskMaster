@@ -30,7 +30,7 @@ namespace Presentation
         {
             taskLogic = new TaskLogic();
             this.Project = project;
-            this.DataContext = this;
+            this.DataContext = Project;
             tasks = new ObservableCollection<en.Task>();
 
             InitializeComponent();
@@ -59,14 +59,19 @@ namespace Presentation
                 case "rdbProjectInfo":
                     projectDetailsGrid.Visibility = Visibility.Visible;
                     taskGrid.Visibility = Visibility.Collapsed;
+                    UsersGrid.Visibility = Visibility.Collapsed;
                     break;
 
                 case "rdbProjectTask":
                     taskGrid.Visibility = Visibility.Visible;
                     projectDetailsGrid.Visibility = Visibility.Collapsed;
+                    UsersGrid.Visibility = Visibility.Collapsed;
                     break;
 
                 case "rdbInvitedUsers":
+                    UsersGrid.Visibility = Visibility.Visible;
+                    projectDetailsGrid.Visibility = Visibility.Collapsed;
+                    taskGrid.Visibility = Visibility.Collapsed;
                     break;
 
             }

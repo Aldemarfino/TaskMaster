@@ -24,11 +24,16 @@
                         <fa:IconImage Icon="Add" Width="20" Height="20"
                                       Margin="2"/>
                     </Border>
-                    
+
                     <TextBlock Text="Agregar Proyecto" Foreground="{StaticResource Foreground2}"
                                Margin="5,0,0,0" VerticalAlignment="Center" FontSize="16"/>
                 </StackPanel>
             </ToggleButton>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <DatePicker Margin="0,0,10,0" Name="dtpStartDateFilter" />
+                <DatePicker Margin="0,0,90,0"/>
+            </StackPanel>
 
             <Popup Name="PopupNewProject" PlacementTarget="{Binding ElementName=tgbNewProject}" Placement="Bottom"
                    StaysOpen="False" Closed="PopupNewProject_Closed">
@@ -41,7 +46,7 @@
                         <TextBox x:Name="DescriptionTextBox" AcceptsReturn="True" 
                                  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                                  TextWrapping="Wrap" Margin="10,0,10,5" Height="65" Width="330"/>
-                        
+
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
                                     Margin="10">
                             <DatePicker Margin="0,0,5,0" Name="dtpStartDate"
@@ -105,14 +110,12 @@
                           SelectionChanged="ProjectsDataGrid_SelectionChanged">
 
                     <DataGrid.Columns>
-                        
+
                         <DataGridTemplateColumn Header="Proyectos" Width="*" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" Height="40">
 
-                                        <CheckBox VerticalAlignment="Center"
-                                                  IsHitTestVisible="True"/>
                                         <StackPanel VerticalAlignment="Center">
                                             <TextBlock Text="{Binding Name}" FontSize="16"/>
                                             <ProgressBar Maximum="100" Minimum="0" Value="{Binding Percentage}"
@@ -126,28 +129,36 @@
                 </DataGrid>
 
                 <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="145*"/>
+                        <ColumnDefinition Width="21*"/>
+                        <ColumnDefinition Width="235*"/>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal">
-                        <local:ClearableTextBox Margin="10" Width="200"/>
+                    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" >
+                        <ComboBox FontSize="16" Height="30" Margin="12,0,0,0">
+                            <ComboBoxItem Content="Pendiente" IsSelected="True"/>
+                            <ComboBoxItem Content="Programado"/>
+                            <ComboBoxItem Content="Atrasado"/>
+                        </ComboBox>
 
                         <Button Grid.Column="1" Name="btnFilterProjects" Style="{StaticResource HomeFilterButton}"
-                                HorizontalAlignment="Left" Click="btnFilterProjects_Click">
+                                HorizontalAlignment="Left" Click="btnFilterProjects_Click" Margin="20,0,0,0">
                             <fa:IconImage Width="25" Height="25" Icon="Filter"/>
                         </Button>
                     </StackPanel>
-                    
+
                     <DataGrid Grid.Row="1" Style="{DynamicResource DataGridStyle1}" 
                               CellStyle="{DynamicResource DataGridCellStyle1}" 
                               ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                               RowStyle="{DynamicResource DataGridRowStyle1}" 
                               x:Name="FilteredProjectsDataGrid" AutoGenerateColumns="False"
-                              SelectionMode="Single" Margin="10"
-                              CanUserAddRows="False"
-                              SelectionChanged="FilteredProjectsDataGrid_SelectionChanged">
+                              SelectionMode="Single" Margin="10,10,10,10"
+                              CanUserAddRows="False" Grid.ColumnSpan="3">
 
                         <DataGrid.Columns>
                             <DataGridTemplateColumn Header="Proyectos Filtrados" Width="*">
@@ -159,7 +170,7 @@
                                             <StackPanel VerticalAlignment="Center">
                                                 <TextBlock Text="{Binding Name}" FontSize="16"/>
                                                 <ProgressBar Maximum="100" Minimum="0" Value="{Binding Percentage}"
-                                         Height="5" Background="Red" Margin="0,5,0,0"/>
+                                                             Height="5" Background="Red" Margin="0,5,0,0"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>
