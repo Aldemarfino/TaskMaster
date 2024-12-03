@@ -31,8 +31,8 @@
             </ToggleButton>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <DatePicker Margin="0,0,10,0" Name="dtpStartDateFilter" />
-                <DatePicker Margin="0,0,90,0"/>
+                <DatePicker Margin="0,0,10,0" Name="dtpStartDateFilter"/>
+                <DatePicker Margin="0,0,10,0" Name="dtpEndDateFilter"/>
             </StackPanel>
 
             <Popup Name="PopupNewProject" PlacementTarget="{Binding ElementName=tgbNewProject}" Placement="Bottom"
@@ -139,8 +139,8 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" >
-                        <ComboBox FontSize="16" Height="30" Margin="12,0,0,0">
+                    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3">
+                        <ComboBox FontSize="16" Height="30" Margin="240,0,0,0" Name="cbbProjectState">
                             <ComboBoxItem Content="Pendiente" IsSelected="True"/>
                             <ComboBoxItem Content="Programado"/>
                             <ComboBoxItem Content="Atrasado"/>
@@ -165,8 +165,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" Height="40">
-
-                                            <CheckBox VerticalAlignment="Center"/>
+                                            
                                             <StackPanel VerticalAlignment="Center">
                                                 <TextBlock Text="{Binding Name}" FontSize="16"/>
                                                 <ProgressBar Maximum="100" Minimum="0" Value="{Binding Percentage}"
@@ -176,6 +175,9 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Header="Entrega" Binding="{Binding Deadline}"/>
+                            <DataGridTextColumn Header="Estado" Binding="{Binding State}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

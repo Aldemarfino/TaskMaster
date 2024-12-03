@@ -141,7 +141,20 @@ namespace Presentation.UserControls
 
         private void btnFilterProjects_Click(object sender, RoutedEventArgs e)
         {
-            FilteredProjectsDataGrid.DataContext = Projects;
+            LoadFilteredProjectsDataGrid();
+            
+        }
+
+        private void LoadFilteredProjectsDataGrid()
+        {
+            string user = User.UserName;
+            DateTime? startDate = dtpStartDateFilter.SelectedDate;
+            DateTime? endDate = dtpEndDateFilter.SelectedDate;
+
+            ComboBoxItem selectedItem = (ComboBoxItem)cbbProjectState.SelectedItem;
+            string state = selectedItem?.Content.ToString();
+
+            FilteredProjectsDataGrid.ItemsSource = projectLogic.ProjectsFiltered(user,startDate,endDate,state);
         }
     }
 }

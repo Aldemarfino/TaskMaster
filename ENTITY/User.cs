@@ -32,8 +32,8 @@ namespace ENTITY
 
         public SqlCommand SQLCommandInsert(SqlConnection connection)
         {
-            string ssql = "INSERT INTO Usuarios(Nombre_Usuario,Contrasena,Nombres,Apellidos,Correo) " +
-                "VALUES (@Nombre_Usuario, @Contrasena, @Nombres, @Apellidos, @Correo)";
+                string ssql = "INSERT INTO Usuarios(Nombre_Usuario,Contrasena,Nombres,Apellidos,Correo) " +
+                    "VALUES (@Nombre_Usuario, @Contrasena, @Nombres, @Apellidos, @Correo)";
             SqlCommand cmd = new SqlCommand(ssql, connection);
             cmd.Parameters.AddWithValue("@Nombre_Usuario", this.UserName);
             cmd.Parameters.AddWithValue("@Contrasena", this.Password);

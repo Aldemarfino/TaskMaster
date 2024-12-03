@@ -104,7 +104,7 @@ namespace DAL
                 "INNER JOIN Proyectos " +
                 "ON " +
                 "Tareas.Id_Proyecto = Proyectos.Id_Proyecto" +
-                "WHERE Tareas.Nombre_Usuario = @NombreUsuario AND Tareas.Nombre_Usuario<> Proyecto.Usuario_Creador;";
+                "WHERE Tareas.Nombre_Usuario = @NombreUsuario AND Tareas.Nombre_Usuario <> Proyecto.Usuario_Creador;";
 
             SqlCommand cmd = new SqlCommand(ssql, _connection);
             cmd.Parameters.AddWithValue("@NombreUsuario", username);

@@ -28,5 +28,10 @@ namespace BLL
         {
             return projectRepository.GetProjectsByUser(username);
         }
+
+        public List<Project> ProjectsFiltered(string user, DateTime? startDate, DateTime? endDate, string state)
+        {
+            return projectRepository.GetProjectsFiltered(user, startDate, endDate, state);
+        }
     }
 }
